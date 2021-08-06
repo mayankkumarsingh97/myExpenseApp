@@ -1,0 +1,22 @@
+*{margin: 0; padding: 0; box-sizing: border-box;}
+
+body{ background: lightgray; }
+
+.container{
+	/*border: 1px solid red;*/
+	min-height: 100vh;
+}
+#total-top{
+	font-family: cursive;
+	font-size: 1.4rem;
+	font-weight: 400;
+}
+.headh2{
+	margin-top: 10px;
+}
+.row{
+	/*border: 1px solid black;*/
+}
+#rupe{
+	font-size: .8em;
+}
