@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>my Expenses</title>
+<link rel="stylesheet" type="text/css" href="bootstrap.css">
+<!-- <link rel="stylesheet" type="text/css" href="myStyle.css"> -->
+<style type="text/css">
+  *{margin: 0; padding: 0; box-sizing: border-box;}
+
+body{ background: lightgray; }
+
+.container{
+  /*border: 1px solid red;*/
+  min-height: 100vh;
+}
+#total-top{
+  font-family: cursive;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+.headh2{
+  margin-top: 10px;
+}
+.row{
+  /*border: 1px solid black;*/
+}
+#rupe{
+  font-size: .8em;
+}
+  html,body{
+    font-family: arial,vardhana,cursive;
+
+  }
+</style>
+</head>
+
+
+<body>
+          <div class="container">
+          	<div class="row">
+          		<div class="col-md-4 col-lg-4  col-sm-4 text-center  mx-auto border border-top-0 border-bottom-0">
+          			<h2 class="headh2">MY EXPENSES</h2>
+          			<div id="total-top" class="lead dispaly-4 border-bottom"><span class="">Total</span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: 600">300</span></div><br>
+
+
+     <form onsubmit="return val()">
+<div class="form-group">
+<div style="text-align:left;padding-left: 3px;"><small style="color:red; text-align: left;" id="title-err"></small></div>
+<input id="title" type="text" name="" placeholder="Title" class="form-control"> 
+</div><br>
+
+
+<div class="form-group">
+<div style="text-align: left;padding-left: 4px;"><small id="amount-err" style="color:red;"></small></div>
+<input id="amount" type="text" name="" placeholder="Amount" class="form-control"> 
+</div><br>
+
+
+<div class="form-group">
+<div style="text-align: left;padding-left: 4px;"><small id="note-err" style="color:red; text-align: left;"></small></div>
+<input id="note" type="text" name="" placeholder="Note" class="form-control"> 
+
+
+ </div><br>
+ <div class="form-group">
+ <input  id="date" type="date" name="" class="form-control"> 
+ </div><br>
+
+     </form>    
+
+     <!-- ------------FORM ENDS HERE-------------------
+     ---------------------------------------------- -->
+          				
+          			
+          			
+  <div><button  type="button" id="btn-add-expense" class="btn btn-primary">ADD EXPENSE</button></div><br>
+
+
+
+
+<!-- 
+ --------------------------------------------------------------------
+ -----------------------------OUTPUT SECTION STARTS-------- ---------------------------------------------------------------------------- -->    
+
+
+
+<div id="output-div" class="card  border p-2 shadow-lg">
+    <div  class="" style="text-align: left; font-size: .8em;text-transform: uppercase;" id="mydate">06 August 2021</div>
+    <div style="display:flex; justify-content:space-between;" id="myTitle" style="text-align:left;font-weight:900; padding: 3px;"><span>myTitle</span>
+      <div><span>Rs.</span>&nbsp;<span id="rupee" style="font-weight:700;font-size: 1em;">400</span></div>
+      </div>
+
+    <div style="text-align: left;">
+            <!-- <span style="font-weight: 700; padding:3px">NOTE:</span> -->
+            <span id="myNote">myNote</span>
+    </div>
+
+</div>
+
+
+
+          		</div>   <!-- -------- col ends ------ -->
+          	</div>   <!-- -------row ends ----------------- -->
+          </div>    <!-- -------------container ends --------------------------------- -->
+
+
+          <script type="text/javascript">
+          	  document.getElementById('btn-add-expense').addEventListener("click",val);
+          	  function val(){
+                  let dateValue=document.getElementById('date').value;
+          	  	 let noteValue=document.getElementById('note').value;
+          	  	 let titleValue=document.getElementById('title').value;
+          	  	 let amtValue=document.getElementById('amount').value;
+                 let myNote=document.getElementById('myNote').value;
+                 let res=document.getElementById('rupee').value;
+                 console.log(res);
+
+
+          	  	  if(titleValue==""){
+                    document.getElementById('title-err').innerText="Required";
+          	  	  }
+          	  	  if(amtValue==""){
+          	  	  	document.getElementById('amount-err').innerText="Required";
+          	  	  }
+          	  	  if(noteValue==""){
+          	  	  	document.getElementById('note-err').innerText="Required";
+          	  	  }
+                 
+              
+              document.getElementById('myTitle').innerHTML=titleValue;
+              document.getElementById('mydate').innerHTML=dateValue;
+              document.getElementById('myNote').innerText=myNote;
+              document.getElementById('res').innerHTML=res;
+
+
+          	  }
+
+          </script>
+
+
+               <script type="text/javascript">
+                 
+               </script>
+</body>
+</html>
