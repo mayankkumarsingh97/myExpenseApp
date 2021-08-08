@@ -49,7 +49,7 @@ body{ background: lightgray; }
           			<div id="total-top" class="lead dispaly-4 border-bottom"><span class="">Total</span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: 600">300</span></div><br>
 
 
-     <form onsubmit="return val()">
+     <form    id="form" autocomplete="off" action="javascript:void(0)">
 <div class="form-group">
 <div style="text-align:left;padding-left: 3px;"><small style="color:red; text-align: left;" id="title-err"></small></div>
 <input id="title" type="text" name="" placeholder="Title" class="form-control"> 
@@ -58,7 +58,7 @@ body{ background: lightgray; }
 
 <div class="form-group">
 <div style="text-align: left;padding-left: 4px;"><small id="amount-err" style="color:red;"></small></div>
-<input id="amount" type="text" name="" placeholder="Amount" class="form-control"> 
+<input id="amount" type="number" name="" placeholder="Amount" class="form-control"> 
 </div><br>
 
 
@@ -72,6 +72,7 @@ body{ background: lightgray; }
  <input  id="date" type="date" name="" class="form-control"> 
  </div><br>
 
+<input  type="submit"  class="btn btn-primary"></input>
      </form>    
 
      <!-- ------------FORM ENDS HERE-------------------
@@ -79,7 +80,7 @@ body{ background: lightgray; }
           				
           			
           			
-  <div><button  type="button" id="btn-add-expense" class="btn btn-primary">ADD EXPENSE</button></div><br>
+  <div></div><br>
 
 
 
@@ -112,36 +113,77 @@ body{ background: lightgray; }
 
 
           <script type="text/javascript">
-          	  document.getElementById('btn-add-expense').addEventListener("click",val);
-          	  function val(){
+              const form =document.getElementById('form');
+          	  form.addEventListener("submit",(e)=>{
+                          e.preventDefault();
+                          
                   let dateValue=document.getElementById('date').value;
-          	  	 let noteValue=document.getElementById('note').value;
-          	  	 let titleValue=document.getElementById('title').value;
-          	  	 let amtValue=document.getElementById('amount').value;
+                 let noteValue=document.getElementById('note').value.trim();
+                 let titleValue=document.getElementById('title').value.trim();
+                 let amtValue=document.getElementById('amount').value;
+                 let amtLen=document.getElementById('amount').value.trim().length;
+
                  let myNote=document.getElementById('myNote').value;
-                 let res=document.getElementById('rupee').value;
-                 console.log(res);
+                 // let res=document.getElementById('rupee').value;
+                console.log(amtLen);
                  
 
 
-          	  	  if(titleValue==""){
+                  if(titleValue==""){
                     document.getElementById('title-err').innerText="Required";
-          	  	  }
-          	  	  if(amtValue==""){
-          	  	  	document.getElementById('amount-err').innerText="Required";
-          	  	  }
-          	  	  if(noteValue==""){
-          	  	  	document.getElementById('note-err').innerText="Required";
-          	  	  }
+                    
+                  }else{
+                      const len=titleValue.length;
+                    if(len>=30){
+                      document.getElementById('title-err').innerText="char must not exeed 30 ";
+                    }else if(len<5){
+                      document.getElementById('title-err').innerText="Title must be at least 5 char";
+                      
+                    }else{
+                      document.getElementById('title-err').innerText="";
+                    }
+                  }
+
+
+                  if(amtValue==""){
+                    document.getElementById('amount-err').innerText="Required";
+  // document.write("Funkin mistake man"); <= THIS WAS THE MISTAKE I MADE WHICH DIRECTS ME TO NXT PG
+
+                  }else { if(amtLen>5){
+                          document.getElementById('amount-err').innerText="range exeeded";}
+
+                          else if(amtValue==0 || amtValue<=10){
+                document.getElementById('amount-err').innerText="amt can't be null and should be more than 9";
+                          }else{
+                            document.getElementById('amount-err').innerText="";}
+                          }
+                  
+
+                  if(noteValue==""){
+                    document.getElementById('note-err').innerText="Required";
+                    
+                  }else{
+                    document.getElementById('note-err').innerText="";
+                  }
                  
               
+
+
+               //code for output div
+
               document.getElementById('myTitle').innerHTML=titleValue;
               document.getElementById('mydate').innerHTML=dateValue;
               document.getElementById('myNote').innerText=myNote;
-              document.getElementById('rupee').innerHTML=res;
+              // document.getElementById('rupee').innerHTML=res;
 
 
-          	  }
+              });
+              
+
+          	  
+                 
+              
+              
 
           </script>
 
