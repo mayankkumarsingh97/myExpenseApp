@@ -64,7 +64,7 @@ body{ background: lightgray; }
 
 <div class="form-group">
 <div style="text-align: left;padding-left: 4px;"><small id="note-err" style="color:red; text-align: left;"></small></div>
-<input id="note" type="text" name="" placeholder="Note" class="form-control"> 
+<input id="Input-note" type="text" name="" placeholder="write note within 50 char" class="form-control"> 
 
 
  </div><br>
@@ -91,15 +91,15 @@ body{ background: lightgray; }
 
 
 
-<div id="output-div" class="card  border p-2 shadow-lg">
+<div id="output-div" class="p-2 shadow-lg">
     <div  class="" style="text-align: left; font-size: .8em;text-transform: uppercase;" id="mydate"><!-- 06 August 2021 --></div>
     <div style="display:flex; justify-content:space-between;" id="myTitle" style="text-align:left;font-weight:900; padding: 3px;"><span><!-- myTitle --></span>
 
       <div id="rupee"></div>
       </div>
 
-    <div id="myNote" style="text-align: left;">
-            note <!-- -----------note------------------- -->
+    <div id="output-note" style="text-align: left;">
+             <!-- -----------note------------------- -->
             
     </div>
 
@@ -118,27 +118,26 @@ body{ background: lightgray; }
                           e.preventDefault();
                           
                   let dateValue=document.getElementById('date').value;
-                 let noteValue=document.getElementById('note').value.trim();
+                 let noteValue=document.getElementById('Input-note').value.trim();
                  let titleValue=document.getElementById('title').value.trim();
                  let amtValue=document.getElementById('amount').value;
                  let amtLen=document.getElementById('amount').value.trim().length;
 
-                 let myNote=document.getElementById('myNote').value;
-                 // let res=document.getElementById('rupee').value;
-                console.log(amtLen);
-                 
+                // let myNote=document.getElementById('input-note').value.trim();
 
+                 
 
                   if(titleValue==""){
                     document.getElementById('title-err').innerText="Required";
-                    
+                    return false;
                   }else{
                       const len=titleValue.length;
                     if(len>=30){
                       document.getElementById('title-err').innerText="char must not exeed 30 ";
+                      return false;
                     }else if(len<5){
                       document.getElementById('title-err').innerText="Title must be at least 5 char";
-                      
+                      return false;
                     }else{
                       document.getElementById('title-err').innerText="";
                     }
@@ -154,6 +153,7 @@ body{ background: lightgray; }
 
                           else if(amtValue==0 || amtValue<=10){
                 document.getElementById('amount-err').innerText="amt can't be null and should be more than 9";
+                        return false;
                           }else{
                             document.getElementById('amount-err').innerText="";}
                           }
@@ -161,20 +161,28 @@ body{ background: lightgray; }
 
                   if(noteValue==""){
                     document.getElementById('note-err').innerText="Required";
+                    return false;
                     
                   }else{
                     document.getElementById('note-err').innerText="";
+                    finalSubmisson();
                   }
                  
               
-
+                  
 
                //code for output div
 
-              document.getElementById('myTitle').innerHTML=titleValue;
-              document.getElementById('mydate').innerHTML=dateValue;
-              document.getElementById('note').innerText=myNote;
+              function finalSubmisson(){
+
+                document.getElementById('myTitle').innerHTML=titleValue;
+                document.getElementById('mydate').innerHTML=dateValue;
+
+
+                
+              //document.getElementById('output-note').innerText=myNote;
               // document.getElementById('rupee').innerHTML=res;
+              }
 
 
               });
