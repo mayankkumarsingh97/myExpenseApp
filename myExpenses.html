@@ -146,14 +146,14 @@ body{ background: lightgray; }
 
                   if(amtValue==""){
                     document.getElementById('amount-err').innerText="Required";
-  // document.write("Funkin mistake man"); <= THIS WAS THE MISTAKE I MADE WHICH DIRECTS ME TO NXT PG
+ 
 
                   }else { if(amtLen>5){
                           document.getElementById('amount-err').innerText="range exeeded";}
 
                           else if(amtValue==0 || amtValue<=10){
-                document.getElementById('amount-err').innerText="amt can't be null and should be more than 9";
-                        return false;
+                          document.getElementById('amount-err').innerText="amt can't be null and should be more than 9";
+                               return false;
                           }else{
                             document.getElementById('amount-err').innerText="";}
                           }
